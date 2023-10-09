@@ -113,22 +113,28 @@ fetch(url)
         document.querySelector('#playerTwoCardFour').src = playerTwoCards[3].image;
         alert('war')
         console.log('its war')
-        war(convert(playerOneCards[warNumber].value), convert(playerTwoCards[warNumber].value))
+        war(convert(playerOneCards[3].value), convert(playerTwoCards[3].value))
       }
   }
  
   function war(player1,player2){
+    let warComparePlayerOne = convert(playerOneCards[3].value)
+    let warComparePlayerTwo = convert(playerTwoCards[3].value)
     if(playerOneCards.length >= 4 && playerTwoCards.length >= 4){  
-      if(playerOneCards[3].value > playerTwoCards[3].value){
+      console.log(playerOneCards[3].value)
+      console.log(playerTwoCards[3].value)
+      if( warComparePlayerOne > warComparePlayerTwo){
         p1Count += 1;
+        console.log('player 1')
         playerOneCards.splice(0,4);
         playerTwoCards.splice(0,4);
         playerOneCards.push(playerOneCards[0],playerOneCards[1],playerOneCards[2],playerOneCards[3],playerTwoCards[0],playerTwoCards[1],playerTwoCards[2],playerTwoCards[3])
-        console.log('player 1')
         document.querySelector('#p1Count').innerText = `Player 1 : ${p1Count} Cards left: ${playerOneCards.length}`
         document.querySelector('#p2Count').innerText = `Player 2 : ${p2Count} Cards left: ${playerTwoCards.length}`
-      }else if(playerOneCards[3].value < playerTwoCards[3].value){
+      }else if( warComparePlayerOne < warComparePlayerTwo){
         p2Count += 1;
+        console.log(playerOneCards[3].value)
+      console.log(playerTwoCards[3].value)
         playerOneCards.splice(0,4);
         playerTwoCards.splice(0,4);
         playerTwoCards.push(playerOneCards[0],playerOneCards[1],playerOneCards[2],playerOneCards[3],playerTwoCards[0],playerTwoCards[1],playerTwoCards[2],playerTwoCards[3])
@@ -136,7 +142,9 @@ fetch(url)
         document.querySelector('#p1Count').innerText = `Player 1 : ${p1Count} Cards left: ${playerOneCards.length}`
         document.querySelector('#p2Count').innerText = `Player 2 : ${p2Count} Cards left: ${playerTwoCards.length}`
       }
-      else if(player1 === player2){
+      else if( warComparePlayerOne === warComparePlayerTwo){
+        console.log(playerOneCards[3].value)
+      console.log(playerTwoCards[3].value)
         war(convert(playerOneCards[warNumber += 4].value), convert(playerTwoCards[ warNumber += 4].value))
       }
   }
